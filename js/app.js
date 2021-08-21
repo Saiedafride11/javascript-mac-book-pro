@@ -1,54 +1,26 @@
-//totalPrice
-const totalPrice = document.getElementById('total-price');
-const pomoTotalPrice = document.getElementById('total');
-
-//memoryUpdate
+/* ---------------- memoryUpdate ---------------------*/
 function memoryUpdate(amount){
-    const memoryAmount = document.getElementById('memory-amount');
-    const totalMemoryAmount = memoryAmount.innerText = amount;
-
-    const storageAmount = document.getElementById('storage-amount').innerText;
-    const totalStorageAmount = parseInt(storageAmount);
-    const deliveryAmount = document.getElementById('delivery-amount').innerText;
-    const totalDeliveryAmount = parseInt(deliveryAmount);
-    totalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
-    pomoTotalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
+    const totalMemoryAmount = updateCatchCost('memory', amount);
+    const totalStorageAmount = catchCost('storage');
+    deliveryCodeUpdate(totalMemoryAmount, totalStorageAmount);
 }
 
-//storageUpdate
+/*----------------- storageUpdate ---------------------*/
 function storageUpdate(amount){
-    const storageAmount = document.getElementById('storage-amount');
-    const totalStorageAmount = storageAmount.innerText = amount;
-
-    const memoryAmount =  document.getElementById('memory-amount').innerText;
-    const totalMemoryAmount = parseInt(memoryAmount);
-    const deliveryAmount = document.getElementById('delivery-amount').innerText;
-    const totalDeliveryAmount = parseInt(deliveryAmount);
-    totalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
-    pomoTotalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
+    const totalStorageAmount =  updateCatchCost('storage', amount);
+    const totalMemoryAmount = catchCost('memory');
+    deliveryCodeUpdate(totalStorageAmount, totalMemoryAmount);
 }
 
-//deliveryUpdate
+/*---------------- deliveryUpdate ---------------------*/
 function deliveryUpdate(amount){
-    const deliveryAmount = document.getElementById('delivery-amount');
-    const totalDeliveryAmount = deliveryAmount.innerText = amount;
-
+    const totalDeliveryAmount = updateCatchCost('delivery', amount);
     memoryStorageUpdate(totalDeliveryAmount);
 }
 
-function memoryStorageUpdate(totalDeliveryAmount){
-    const memoryAmount =  document.getElementById('memory-amount').innerText;
-    const totalMemoryAmount = parseInt(memoryAmount);
-    const storageAmount = document.getElementById('storage-amount').innerText;
-    const totalStorageAmount = parseInt(storageAmount);
-    totalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
-    pomoTotalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
-}
-
-// pomo code
+/*---------------- pomo code ---------------------------*/
 function pomoCode(){
-    const deliveryAmount = document.getElementById('delivery-amount').innerText;
-    const totalDeliveryAmount = parseInt(deliveryAmount);
+    const totalDeliveryAmount = catchCost('delivery');
     memoryStorageUpdate(totalDeliveryAmount)
 
     const pomoCode = document.getElementById('pomo-code');
@@ -67,5 +39,35 @@ function pomoCode(){
     pomoCode.value = ''
 }
 
+/*---------------- Single Id Update ---------------------------*/
+function updateCatchCost(id, amount){
+    const cost = document.getElementById(id + '-amount');
+    const totalCost = cost.innerText = amount;
+    return totalCost;
+}
 
+/*---------------- Single Id Update ---------------------------*/
+function catchCost(id){
+    const cost = document.getElementById(id + '-amount').innerText;
+    const totalCost = parseInt(cost);
+    return totalCost;
+}
 
+/* ---------------- totalPrice ---------------------*/
+const totalPrice = document.getElementById('total-price');
+const pomoTotalPrice = document.getElementById('total');
+
+/*---------------- deliveryCodeUpdate ---------------------------*/
+function deliveryCodeUpdate(totalStorageAmount, totalMemoryAmount){
+    const totalDeliveryAmount = catchCost('delivery');
+    totalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
+    pomoTotalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
+}
+
+/*---------------- memoryStorageUpdate ---------------------------*/
+function memoryStorageUpdate(totalDeliveryAmount){
+    const totalMemoryAmount = catchCost('memory');
+    const totalStorageAmount = catchCost('storage');
+    totalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
+    pomoTotalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
+}
