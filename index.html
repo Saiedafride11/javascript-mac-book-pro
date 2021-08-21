@@ -33,23 +33,23 @@
                         <!-- Memory -->
                         <div class="pt-4">
                             <h6>Memory</h6>
-                            <button id="memory-one-button">8GB unified memory</button>
-                            <button id="memory-two-button">16GB unified memory</button>
+                            <button onclick="memoryUpdate(0)">8GB unified memory</button>
+                            <button onclick="memoryUpdate(180)">16GB unified memory</button>
                         </div>
 
                         <!-- Storage -->
                         <div class="pt-5">
                             <h6>Storage</h6>
-                            <button id="storage-one-button">256GB SSD storage</button>
-                            <button id="storage-two-button">512GB SSD storage</button>
-                            <button id="storage-three-button">1TB SSD storage</button>
+                            <button onclick="storageUpdate(0)">256GB SSD storage</button>
+                            <button onclick="storageUpdate(100)">512GB SSD storage</button>
+                            <button onclick="storageUpdate(180)">1TB SSD storage</button>
                         </div>
 
                         <!-- Delivery -->
                         <div class="pt-5">
                             <h6>Choose your delivery option</h6>
-                            <button id="delivery-one-button">Friday, Aug 25 FREE Prime Delivery</button>
-                            <button id="delivery-two-button">Friday, Aug 21 Delivery charge $20</button>
+                            <button onclick="deliveryUpdate(0)">Friday, Aug 25 FREE Prime Delivery</button>
+                            <button onclick="deliveryUpdate(20)">Friday, Aug 21 Delivery charge $20</button>
                         </div>
 
                         <!-- Price -->
@@ -60,19 +60,19 @@
                             </div>
                             <div class="d-flex justify-content-between border-bottom pt-2 px-2">
                                 <h6>Extra Memory Cost</h6>
-                                <h6>$<span id="memory-cost">0</span></h6>
+                                <h6>$<span id="memory-amount">0</span></h6>
                             </div>
                             <div class="d-flex justify-content-between border-bottom pt-2 px-2">
                                 <h6>Extra Storage Cost</h6>
-                                <h6>$<span id="storage-cost">0</span> </h6>
+                                <h6>$<span id="storage-amount">0</span> </h6>
                             </div>
                             <div class="d-flex justify-content-between pt-2 px-2">
                                 <h6>Delivery charge</h6>
-                                <h6>$<span id="delivery-charge">0</span> </h6>
+                                <h6>$<span id="delivery-amount">0</span> </h6>
                             </div>
                             <div class="d-flex justify-content-between border-bottom pt-2 px-2" style="border-top: 2px solid rgb(122, 122, 122);">
                                 <h6>Total Price</h6>
-                                <h6>$<span class="total-price">1299</span> </h6>
+                                <h6>$<span id="total-price">1299</span> </h6>
                             </div>
                         </div>
 

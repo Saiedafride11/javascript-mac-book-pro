@@ -1,112 +1,60 @@
-
 //totalPrice
-const totalPrice = document.querySelector('.total-price');
-const totalPriceText = totalPrice.innerText;
-const PreviousTotalPrice = parseInt(totalPriceText);
+const totalPrice = document.getElementById('total-price');
+const pomoTotalPrice = document.getElementById('total');
 
+//memoryUpdate
+function memoryUpdate(amount){
+    const memoryAmount = document.getElementById('memory-amount');
+    const totalMemoryAmount = memoryAmount.innerText = amount;
 
-    // const totalPrice = document.querySelectorAll('.total-price');
-    // for(const price of totalPrice){
-    //     const totalPriceText = price.innerText;
-    //     PreviousTotalPrice = parseInt(totalPriceText);
-    // }
-
-
-//memoryButton
-const memoryOneButton = document.getElementById('memory-one-button');
-memoryOneButton.addEventListener('click', function(){
-    const memoryCost = document.getElementById('memory-cost');
-    const totalMemoryCost = memoryCost.innerText = 0;
-
-    memoryInfo(totalMemoryCost);
-
-})
-
-const memoryTwoButton = document.getElementById('memory-two-button');
-memoryTwoButton.addEventListener('click', function(){
-    const memoryCost = document.getElementById('memory-cost');
-    const totalMemoryCost = memoryCost.innerText = 180;
-     
-    memoryInfo(totalMemoryCost);
-})
-
-function memoryInfo(totalMemoryCost){
-    const storageCost = document.getElementById('storage-cost').innerText;
-    const totalStorageCost = parseInt(storageCost);
-    const deliveryCharge = document.getElementById('delivery-charge').innerText;
-    const totalDeliveryCharge = parseInt(deliveryCharge);
-    totalPrice.innerText = parseInt(PreviousTotalPrice + totalMemoryCost + totalStorageCost + totalDeliveryCharge);
+    const storageAmount = document.getElementById('storage-amount').innerText;
+    const totalStorageAmount = parseInt(storageAmount);
+    const deliveryAmount = document.getElementById('delivery-amount').innerText;
+    const totalDeliveryAmount = parseInt(deliveryAmount);
+    totalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
+    pomoTotalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
 }
 
-//storageButton
+//storageUpdate
+function storageUpdate(amount){
+    const storageAmount = document.getElementById('storage-amount');
+    const totalStorageAmount = storageAmount.innerText = amount;
 
-const storageOneButton = document.getElementById('storage-one-button');
-storageOneButton.addEventListener('click', function(){
-    const storageCost = document.getElementById('storage-cost');
-    const totalStorageCost = storageCost.innerText = 0;
-
-    storageInfo(totalStorageCost);
-})
-
-const storageTwoButton = document.getElementById('storage-two-button');
-storageTwoButton.addEventListener('click', function(){
-    const storageCost = document.getElementById('storage-cost');
-    const totalStorageCost = storageCost.innerText = 100;
-
-    storageInfo(totalStorageCost);
-})
-
-const storageThreeButton = document.getElementById('storage-three-button');
-storageThreeButton.addEventListener('click', function(){
-    const storageCost = document.getElementById('storage-cost');
-    const totalStorageCost = storageCost.innerText = 180;
-
-    storageInfo(totalStorageCost);
-})
-
-function storageInfo(totalStorageCost){
-    const memoryCost =  document.getElementById('memory-cost').innerText;
-    const totalMemoryCost = parseInt(memoryCost);
-    const deliveryCharge = document.getElementById('delivery-charge').innerText;
-    const totalDeliveryCharge = parseInt(deliveryCharge);
-    totalPrice.innerText = parseInt(PreviousTotalPrice + totalMemoryCost + totalStorageCost + totalDeliveryCharge);
+    const memoryAmount =  document.getElementById('memory-amount').innerText;
+    const totalMemoryAmount = parseInt(memoryAmount);
+    const deliveryAmount = document.getElementById('delivery-amount').innerText;
+    const totalDeliveryAmount = parseInt(deliveryAmount);
+    totalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
+    pomoTotalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
 }
 
-//deliveryButton
-const deliveryOneButton = document.getElementById('delivery-one-button');
-deliveryOneButton.addEventListener('click', function(){
-    const deliveryCharge = document.getElementById('delivery-charge');
-    const totalDeliveryCharge = deliveryCharge.innerText = 0;
+//deliveryUpdate
+function deliveryUpdate(amount){
+    const deliveryAmount = document.getElementById('delivery-amount');
+    const totalDeliveryAmount = deliveryAmount.innerText = amount;
 
-    deliveryInfo(totalDeliveryCharge);
-})
+    memoryStorageUpdate(totalDeliveryAmount);
+}
 
-const deliveryTwoButton = document.getElementById('delivery-two-button');
-deliveryTwoButton.addEventListener('click', function(){
-    const deliveryCharge = document.getElementById('delivery-charge');
-    const totalDeliveryCharge = deliveryCharge.innerText = 20;
-
-    deliveryInfo(totalDeliveryCharge);
-})
-
-function deliveryInfo(totalDeliveryCharge){
-    const memoryCost =  document.getElementById('memory-cost').innerText;
-    const totalMemoryCost = parseInt(memoryCost);
-    const storageCost = document.getElementById('storage-cost').innerText;
-    const totalStorageCost = parseInt(storageCost);
-    totalPrice.innerText = parseInt(PreviousTotalPrice + totalMemoryCost + totalStorageCost + totalDeliveryCharge);
+function memoryStorageUpdate(totalDeliveryAmount){
+    const memoryAmount =  document.getElementById('memory-amount').innerText;
+    const totalMemoryAmount = parseInt(memoryAmount);
+    const storageAmount = document.getElementById('storage-amount').innerText;
+    const totalStorageAmount = parseInt(storageAmount);
+    totalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
+    pomoTotalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
 }
 
 // pomo code
 function pomoCode(){
-    const deliveryCharge = document.getElementById('delivery-charge').innerText;
-    const totalDeliveryCharge = parseInt(deliveryCharge);
-    deliveryInfo(totalDeliveryCharge);
+    const deliveryAmount = document.getElementById('delivery-amount').innerText;
+    const totalDeliveryAmount = parseInt(deliveryAmount);
+    memoryStorageUpdate(totalDeliveryAmount)
 
     const pomoCode = document.getElementById('pomo-code');
     const pomoCodeValue = pomoCode.value;
-    if(pomoCodeValue.toLowerCase() == 'stevekaku '){
-        const getPomo = totalPrice.innerText * 0.25;
+    if(pomoCodeValue.toLowerCase() == 'stevekaku'){
+        const getPomo = totalPrice.innerText * 0.2;
         const total = totalPrice.innerText - getPomo;
         document.getElementById('total').innerText = total;
     }
