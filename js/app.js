@@ -1,33 +1,46 @@
+/*---------------- catchCost ---------------------------*/
+function catchCost(id){
+    const cost = document.getElementById(id + '-amount');
+    const totalCost = parseInt(cost.innerText);
+    return totalCost;
+}
+
+/* ---------------- calculateTotal ---------------------*/
+function calculateTotal(){
+    const memoryAmount = catchCost('memory');
+    const storageAmount = catchCost('storage');
+    const deliveryAmount = catchCost('delivery');
+    document.getElementById('total-price').innerText = (1299 + memoryAmount + storageAmount + deliveryAmount)
+    document.getElementById('total').innerText = (1299 + memoryAmount + storageAmount + deliveryAmount)
+}
+
 /* ---------------- memoryUpdate ---------------------*/
 function memoryUpdate(amount){
-    const totalMemoryAmount = updateCatchCost('memory', amount);
-    const totalStorageAmount = catchCost('storage');
-    deliveryCodeUpdate(totalMemoryAmount, totalStorageAmount);
+    document.getElementById('memory-amount').innerText = amount;
+    calculateTotal();
 }
 
-/*----------------- storageUpdate ---------------------*/
+/* ---------------- storageUpdate ---------------------*/
 function storageUpdate(amount){
-    const totalStorageAmount =  updateCatchCost('storage', amount);
-    const totalMemoryAmount = catchCost('memory');
-    deliveryCodeUpdate(totalStorageAmount, totalMemoryAmount);
+    document.getElementById('storage-amount').innerText = amount;
+    calculateTotal();
 }
 
-/*---------------- deliveryUpdate ---------------------*/
+/* ---------------- deliveryUpdate ---------------------*/
 function deliveryUpdate(amount){
-    const totalDeliveryAmount = updateCatchCost('delivery', amount);
-    memoryStorageUpdate(totalDeliveryAmount);
+    document.getElementById('delivery-amount').innerText = amount;
+    calculateTotal();
 }
 
 /*---------------- pomo code ---------------------------*/
 function pomoCode(){
-    const totalDeliveryAmount = catchCost('delivery');
-    memoryStorageUpdate(totalDeliveryAmount);
+    const totalPrice = document.getElementById('total').innerText;
 
     const pomoCode = document.getElementById('pomo-code');
     const pomoCodeValue = pomoCode.value;
     if(pomoCodeValue.toLowerCase() == 'stevekaku'){
-        const getPomo = totalPrice.innerText * 0.2;
-        const total = totalPrice.innerText - getPomo;
+        const getPomo = totalPrice * 0.2;
+        const total = totalPrice - getPomo;
         document.getElementById('total').innerText = total;
         pomoCode.style.display = 'none';
         document.querySelector('.btn-danger').innerText = 'Pomo Applied';
@@ -41,35 +54,5 @@ function pomoCode(){
     pomoCode.value = '';
 }
 
-/*---------------- Single Id Update ---------------------------*/
-function updateCatchCost(id, amount){
-    const cost = document.getElementById(id + '-amount');
-    const totalCost = cost.innerText = amount;
-    return totalCost;
-}
 
-/*---------------- Single Id Update ---------------------------*/
-function catchCost(id){
-    const cost = document.getElementById(id + '-amount').innerText;
-    const totalCost = parseInt(cost);
-    return totalCost;
-}
 
-/* ---------------- totalPrice ---------------------*/
-const totalPrice = document.getElementById('total-price');
-const pomoTotalPrice = document.getElementById('total');
-
-/*---------------- deliveryCodeUpdate ---------------------------*/
-function deliveryCodeUpdate(totalStorageAmount, totalMemoryAmount){
-    const totalDeliveryAmount = catchCost('delivery');
-    totalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
-    pomoTotalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
-}
-
-/*---------------- memoryStorageUpdate ---------------------------*/
-function memoryStorageUpdate(totalDeliveryAmount){
-    const totalMemoryAmount = catchCost('memory');
-    const totalStorageAmount = catchCost('storage');
-    totalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
-    pomoTotalPrice.innerText = parseInt(1299 + totalMemoryAmount + totalStorageAmount + totalDeliveryAmount);
-}
