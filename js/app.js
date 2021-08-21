@@ -21,7 +21,7 @@ function deliveryUpdate(amount){
 /*---------------- pomo code ---------------------------*/
 function pomoCode(){
     const totalDeliveryAmount = catchCost('delivery');
-    memoryStorageUpdate(totalDeliveryAmount)
+    memoryStorageUpdate(totalDeliveryAmount);
 
     const pomoCode = document.getElementById('pomo-code');
     const pomoCodeValue = pomoCode.value;
@@ -29,14 +29,16 @@ function pomoCode(){
         const getPomo = totalPrice.innerText * 0.2;
         const total = totalPrice.innerText - getPomo;
         document.getElementById('total').innerText = total;
+        pomoCode.style.display = 'none';
+        document.querySelector('.btn-danger').innerText = 'Pomo Applied';
     }
     else if(pomoCode.value == ''){
-        alert('Plese provide pomo code')
+        alert('Plese provide pomo code');
     }
     else{
-        alert('Pomo code no match')
+        alert('Pomo code no match');
     }
-    pomoCode.value = ''
+    pomoCode.value = '';
 }
 
 /*---------------- Single Id Update ---------------------------*/
