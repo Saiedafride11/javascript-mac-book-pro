@@ -35,7 +35,7 @@ function deliveryUpdate(amount){
 /*---------------- pomo code ---------------------------*/
 function pomoCode(){
     const totalPrice = document.getElementById('total').innerText;
-
+    
     const pomoCode = document.getElementById('pomo-code');
     const pomoCodeValue = pomoCode.value;
     if(pomoCodeValue.toLowerCase() == 'stevekaku'){
